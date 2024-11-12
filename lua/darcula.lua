@@ -18,64 +18,49 @@ local M = {}
 M.config = config
 
 local color = {
-  green = "#98be65",
-  red = "#f43753",
-  grey = "#C9D0D3",
-  light_blue = "#b3deef",
-  background = "#383838",
-  pale_gold = "#d3b987",
-  dark = "#2B2B2B",
-  bright_sky = "#73cef4",
-  golden_yellow = "#ffc24b",
-  light_olive_green = "#c9d05c",
-  medium_gray = "#4c4c4c",
-  light_brown = "#dc9656",
-  silver_gray = "#b8b8b8",
+  green = "#69ab73",
+  red = "#f75464",
+  grey = "#bcbec4",
+  light_blue = "#56a8f5",
+  background = "#1e1f22",
+  pale_gold = "#cf8e6d",
+  dark = "#1e1f22",
+  bright_sky = "#89a6af",
+  golden_yellow = "#b3ae60",
+  light_olive_green = "#69ab73",
+  medium_gray = "#4b5059",
+  light_brown = "#bcbec4",
+  silver_gray = "#bcbec4",
   bright_cyan = "#00f1f5",
   light_slate_gray = "#abb2bf",
   dark_grey = "#484848",
-  comment = "#808080",
-  light_lime_green = "#a9ff68",
-  peach_orange = "#ff9e64",
+  comment = "#5e826b",
+  light_lime_green = "#69ab73",
+  peach_orange = "#cf8e6d",
   slate_gray = "#6d8086",
-  light_lavender = "#cba6f7",
-  very_light_gray = "#eeeeee",
+  light_lavender = "#9876aa",
+  very_light_gray = "#ced0d6",
   dark_charcoal_gray = "#404040",
-  very_dark_gray = "#242424",
+  very_dark_gray = "#26282e",
   bright_pink = "#f70067",
-  burnt_orange = "#CC7832",
+  burnt_orange = "#cf8e6d",
   dark_maroon = "#7a1b29",
-  steel_blue = "#596f77",
-  bright_yellow_green = "#e3e346",
-  copper_brown = "#C07C41",
+  steel_blue = "#56a8f5",
+  bright_yellow_green = "#b3ae60",
+  copper_brown = "#89a4ad",
   deep_fuchsia = "#b33076",
   lavender = "#9876AA",
   deep_light_blue = "#51afef",
-  pale_taupe = "#AD9E7D",
-  olive_green = "#6A8759",
-  _52 = "#c95942",
-  _54 = "#bf4537",
-  _64 = "#89d957",
-  _70 = "#4dd158",
-  _66 = "#6FAFBD",
-  _71 = "#4B4E4F",
-  _74 = "#3C3F40",
-  _38 = "#881515",
-  _39 = "#73797e",
-  _47 = "#f7bb3b",
-  _50 = "#d1d4cf",
-  _53 = "#c955ae",
-  _55 = "#b8733e",
-  _56 = "#afd700",
-  _57 = "#ad475f",
-  _58 = "#FFC66D",
-  _61 = "#AFBF7E",
-  _68 = "#6897BB",
-  _72 = "#4682b4",
-  _75 = "#392a52",
-  _82 = "#151838",
+  pale_taupe = "#b3ae60",
+  olive_green = "#69ab73",
+  number = "#2aacb8",
+  keyword = "#cf8e6d",
+  constant = "#9876aa",
+  string = "#69ab73",
+  method = "#b3ae60",
+  type = "#ffc66d",
+  instance = "#56a8f5",
 }
-
 ---@param args Config?
 -- you can define your setup function here. Usually configurations can be merged, accepting outside params and
 -- you can also put some validation here for those.
@@ -147,7 +132,7 @@ M.configure_highlights = function()
     hi(0, "@number", { link = "TSNumber" })
     hi(0, "@operator", { link = "TSOperator" })
     hi(0, "@parameter", { link = "TSParameter" })
-    hi(0, "@property", { link = "TSVariable" })
+    hi(0, "@property", { link = "TSConstant" })
     hi(0, "@punctuation.bracket", { link = "TSPunctBracket" })
     hi(0, "@punctuation.delimiter", { link = "TSPunctDelimiter" })
     hi(0, "@punctuation.special", { link = "TSPunctSpecial" })
@@ -198,8 +183,85 @@ M.configure_highlights = function()
     hi(0, "@lsp.type.property", { link = "TSField" })
   end
 
+  -- Ruby Treesitter Highlight Groups
+  hi(0, "@annotation.ruby", { fg = color.grey })
+  hi(0, "@attribute.ruby", { fg = color.bright_sky })
+  hi(0, "@boolean.ruby", { fg = color.keyword })
+  hi(0, "@character.ruby", { fg = color.red })
+  hi(0, "@character.special.ruby", { fg = color.red })
+  hi(0, "@class.ruby", { fg = color.type, bold = true })
+  hi(0, "@comment.ruby", { fg = color.comment, italic = true })
+  hi(0, "@conditional.ruby", { fg = color.keyword })
+  hi(0, "@constant.ruby", { fg = color.constant })
+  hi(0, "@constant.builtin.ruby", { fg = color.constant, italic = true })
+  hi(0, "@constant.macro.ruby", { fg = color.constant })
+  hi(0, "@constructor.ruby", { fg = color.method })
+  hi(0, "@decorator.ruby", { fg = color.keyword })
+  hi(0, "@enum.ruby", { fg = color.constant })
+  hi(0, "@enumMember.ruby", { fg = color.constant })
+  hi(0, "@error.ruby", { fg = color.red, bold = true })
+  hi(0, "@exception.ruby", { fg = color.keyword })
+  hi(0, "@field.ruby", { fg = color.bright_sky })
+  hi(0, "@float.ruby", { fg = color.number })
+  hi(0, "@function.ruby", { fg = color.method })
+  hi(0, "@function.builtin.ruby", { fg = color.method, italic = true })
+  hi(0, "@function.call.ruby", { fg = color.silver_gray })
+  hi(0, "@function.macro.ruby", { fg = color.method })
+  hi(0, "@include.ruby", { fg = color.keyword })
+  hi(0, "@interface.ruby", { fg = color.type })
+  hi(0, "@keyword.ruby", { fg = color.keyword })
+  hi(0, "@keyword.function.ruby", { fg = color.keyword, bold = true })
+  hi(0, "@keyword.operator.ruby", { fg = color.keyword })
+  hi(0, "@keyword.return.ruby", { fg = color.keyword })
+  hi(0, "@keyword.each.ruby", { fg = color.keyword })
+  hi(0, "@label.ruby", { fg = color.bright_sky })
+  hi(0, "@method.ruby", { fg = color.method, bold = true })
+  hi(0, "@method.call.ruby", { fg = color.bright_sky })
+  hi(0, "@namespace.ruby", { fg = color.grey })
+  hi(0, "@none.ruby", { fg = color.grey })
+  hi(0, "@number.ruby", { fg = color.number })
+  hi(0, "@operator.ruby", { fg = color.grey })
+  hi(0, "@parameter.ruby", { fg = color.bright_sky })
+  hi(0, "@property.ruby", { fg = color.bright_sky })
+  hi(0, "@punctuation.bracket.ruby", { fg = color.grey })
+  hi(0, "@punctuation.delimiter.ruby", { fg = color.grey })
+  hi(0, "@punctuation.special.ruby", { fg = color.grey })
+  hi(0, "@regexp.ruby", { fg = color.bright_sky })
+  hi(0, "@repeat.ruby", { fg = color.keyword })
+  hi(0, "@string.ruby", { fg = color.string })
+  hi(0, "@string.escape.ruby", { fg = color.bright_sky })
+  hi(0, "@string.regex.ruby", { fg = color.bright_sky })
+  hi(0, "@string.special.ruby", { fg = color.red })
+  hi(0, "@struct.ruby", { fg = color.type })
+  hi(0, "@symbol.ruby", { fg = color.bright_sky })
+  hi(0, "@tag.ruby", { fg = color.grey })
+  hi(0, "@tag.attribute.ruby", { fg = color.grey })
+  hi(0, "@tag.delimiter.ruby", { fg = color.grey })
+  hi(0, "@text.ruby", { fg = color.grey })
+  hi(0, "@text.danger.ruby", { fg = color.red, bold = true })
+  hi(0, "@text.emphasis.ruby", { fg = color.grey, italic = true })
+  hi(0, "@text.environment.ruby", { fg = color.grey })
+  hi(0, "@text.environment.name.ruby", { fg = color.grey })
+  hi(0, "@text.literal.ruby", { fg = color.grey })
+  hi(0, "@text.math.ruby", { fg = color.number })
+  hi(0, "@text.note.ruby", { fg = color.grey })
+  hi(0, "@text.reference.ruby", { fg = color.bright_sky })
+  hi(0, "@text.strike.ruby", { fg = color.grey, strikethrough = true })
+  hi(0, "@text.strong.ruby", { fg = color.grey, bold = true })
+  hi(0, "@text.title.ruby", { fg = color.type, bold = true })
+  hi(0, "@text.todo.ruby", { fg = color.keyword })
+  hi(0, "@text.underline.ruby", { fg = color.grey, underline = true })
+  hi(0, "@text.uri.ruby", { fg = color.bright_sky, underline = true })
+  hi(0, "@text.warning.ruby", { fg = color.peach_orange })
+  hi(0, "@type.ruby", { fg = color.type })
+  hi(0, "@type.builtin.ruby", { fg = color.type, italic = true })
+  hi(0, "@type.definition.ruby", { fg = color.constant })
+  hi(0, "@type.qualifier.ruby", { fg = color.keyword })
+  hi(0, "@variable.ruby", { fg = color.grey })
+  hi(0, "@variable.builtin.ruby", { fg = color.grey, italic = true })
+
   hi(0, "Bold", { bold = true })
-  hi(0, "Boolean", { fg = color.light_brown })
+  hi(0, "Boolean", { fg = color.burnt_orange })
   hi(0, "Character", { fg = color.red })
 
   -- nvim-cmp
@@ -238,7 +300,7 @@ M.configure_highlights = function()
     hi(0, "CmpItemKindFunctionDefault", { link = "CmpItemKind" })
     hi(0, "CmpItemKindInterface", { fg = color.golden_yellow })
     hi(0, "CmpItemKindInterfaceDefault", { link = "CmpItemKind" })
-    hi(0, "CmpItemKindKeyword", { fg = color.pale_gold })
+    hi(0, "CmpItemKindKeyword", { fg = color.burnt_orange })
     hi(0, "CmpItemKindKeywordDefault", { link = "CmpItemKind" })
     hi(0, "CmpItemKindMethod", { fg = color.light_blue })
     hi(0, "CmpItemKindMethodDefault", { link = "CmpItemKind" })
@@ -255,7 +317,7 @@ M.configure_highlights = function()
     hi(0, "CmpItemKindStruct", { fg = color.golden_yellow })
     hi(0, "CmpItemKindStructDefault", { link = "CmpItemKind" })
     hi(0, "CmpItemKindTextDefault", { link = "CmpItemKind" })
-    hi(0, "CmpItemKindTypeParameter", { fg = color.golden_yellow })
+    hi(0, "CmpItemKindTypeParameter", { fg = color.light_blue })
     hi(0, "CmpItemKindTypeParameterDefault", { link = "CmpItemKind" })
     hi(0, "CmpItemKindUnit", { fg = color.golden_yellow })
     hi(0, "CmpItemKindUnitDefault", { link = "CmpItemKind" })
@@ -281,7 +343,7 @@ M.configure_highlights = function()
   hi(0, "Cursor", { bg = color.very_light_gray, fg = color.dark })
   hi(0, "CursorColumn", { bg = color.background, ctermbg = 242 })
   hi(0, "CursorLine", { bg = color.background })
-  hi(0, "CursorLineNr", { bg = color.background, bold = true, ctermfg = 11, fg = color.silver_gray })
+  hi(0, "CursorLineNr", { bg = color.background, bold = true, ctermfg = 11, fg = color.medium_gray })
 
   -- dap.nvim
   if M.config.opt.integrations.dap_nvim then
@@ -401,10 +463,10 @@ M.configure_highlights = function()
   hi(0, "IndentBlanklineContextStart", { sp = color.golden_yellow, underline = true })
   hi(0, "IndentBlanklineSpaceChar", { ctermfg = 12, fg = color.medium_gray, nocombine = true })
   hi(0, "IndentBlanklineSpaceCharBlankline", { ctermfg = 12, fg = color.medium_gray, nocombine = true })
-  hi(0, "Keyword", { fg = color.pale_gold })
+  hi(0, "Keyword", { fg = color.burnt_orange })
   hi(0, "LSOutlinePreviewBorder", { fg = color.green })
   hi(0, "Label", { fg = color.golden_yellow })
-  hi(0, "LineNr", { ctermfg = 11, fg = color.silver_gray })
+  hi(0, "LineNr", { ctermfg = 11, fg = color.medium_gray })
   hi(0, "LspDiagnosticsDefaultError", { link = "DiagnosticError" })
   hi(0, "LspDiagnosticsDefaultHint", { link = "DiagnosticHint" })
   hi(0, "LspDiagnosticsDefaultInformation", { link = "DiagnosticInfo" })
@@ -461,7 +523,7 @@ M.configure_highlights = function()
   hi(0, "NotifyWARNBorder", { fg = color.pale_gold })
   hi(0, "NotifyWARNIcon", { fg = color.pale_gold })
   hi(0, "NotifyWARNTitle", { fg = color.pale_gold })
-  hi(0, "Number", { fg = color.light_brown })
+  hi(0, "Number", { fg = color.number })
   hi(0, "NvimInternalError", { bg = color.red, ctermbg = 9, ctermfg = 9, fg = color.dark })
   hi(0, "Operator", { fg = color.grey })
   hi(0, "OutlineDetail", { fg = color._39 })
@@ -515,7 +577,7 @@ M.configure_highlights = function()
   hi(0, "SpellRare", { ctermbg = 13, sp = color.pale_gold, undercurl = true })
   hi(0, "Statement", { bold = true, ctermfg = 11, fg = color.red })
   hi(0, "StatusLine", { bg = color.dark_grey, fg = color.grey })
-  hi(0, "StatusLineNC", { bg = color.background, fg = color.silver_gray })
+  hi(0, "StatusLineNC", { bg = color.background, fg = color.medium_gray })
   hi(0, "StorageClass", { fg = color.golden_yellow })
   hi(0, "String", { fg = color.light_olive_green })
   hi(0, "Structure", { fg = color.pale_gold })
@@ -523,7 +585,7 @@ M.configure_highlights = function()
   hi(0, "SymbolsOutlineConnector", { fg = color.medium_gray })
   hi(0, "TSAnnotation", { fg = color.light_brown })
   hi(0, "TSAttribute", { fg = color.golden_yellow })
-  hi(0, "TSBoolean", { fg = color.light_brown })
+  hi(0, "TSBoolean", { fg = color.burnt_orange })
   hi(0, "TSCharacter", { fg = color.red })
   hi(0, "TSComment", { fg = color.comment, italic = true })
   hi(0, "GitSignsCurrentLineBlame", { fg = color.comment, italic = true })
@@ -540,7 +602,7 @@ M.configure_highlights = function()
   hi(0, "TSEmphasis", { fg = color.light_brown, italic = true })
   hi(0, "TSError", { fg = color.red })
   hi(0, "TSException", { fg = color.red })
-  hi(0, "TSField", { fg = color.grey })
+  hi(0, "TSField", { fg = color.light_lavender })
   hi(0, "TSFloat", { fg = color.light_brown })
   hi(0, "TSFuncBuiltin", { fg = color.burnt_orange, italic = true })
   hi(0, "TSFuncMacro", { fg = color.red })
@@ -548,13 +610,13 @@ M.configure_highlights = function()
   hi(0, "TSInclude", { fg = color.copper_brown })
   hi(0, "TSKeyword", { fg = color.burnt_orange })
   hi(0, "TSKeywordFunction", { fg = color.burnt_orange })
-  hi(0, "TSKeywordOperator", { fg = color.pale_gold })
+  hi(0, "TSKeywordOperator", { fg = color.silver_gray })
   hi(0, "TSLabel", { fg = color.lavender })
   hi(0, "TSLiteral", { fg = color.light_brown })
   hi(0, "TSMethod", { fg = color.pale_gold })
   hi(0, "TSNamespace", { fg = color._61 })
   hi(0, "TSNone", { fg = color.grey })
-  hi(0, "TSNumber", { fg = color._68 })
+  hi(0, "TSNumber", { fg = color.number })
   hi(0, "TSConstantBuiltin", { fg = color.copper_brown })
   hi(0, "TSOperator", { fg = color.grey })
   hi(0, "TSParameter", { fg = color.grey })
@@ -574,14 +636,14 @@ M.configure_highlights = function()
   hi(0, "TSTagDelimiter", { fg = color.light_brown })
   hi(0, "TSText", { fg = color.grey })
   hi(0, "TSTitle", { fg = color.light_blue })
-  hi(0, "TSType", { fg = color._66 })
+  hi(0, "TSType", { fg = color.type })
 
   hi(0, "TSTypeDefinition", { fg = color.grey })
   hi(0, "TSTypeBuiltin", { fg = color.burnt_orange, italic = true })
   hi(0, "TSURI", { fg = color.light_brown, underline = true })
   hi(0, "TSUnderline", { fg = color.dark, underline = true })
-  hi(0, "TSVariable", { fg = color.grey })
-  hi(0, "TSVariableBuiltin", { fg = color.burnt_orange, italic = true })
+  hi(0, "TSVariable", { fg = color.silver_gray })
+  hi(0, "TSVariableBuiltin", { fg = color.silver_gray, italic = true })
   hi(0, "TabLine", { bg = color.background, ctermbg = 242, ctermfg = 15, fg = color.medium_gray })
   hi(0, "TabLineFill", { bg = color.background, fg = color.medium_gray })
   hi(0, "TabLineSel", { bg = color.background, fg = color.light_olive_green })
@@ -749,7 +811,7 @@ M.configure_highlights = function()
   hi(0, "@lsp.typemod.function.definition", { link = "TSFunction" })
   hi(0, "@lsp.type.method", { link = "TSMethod" })
   hi(0, "goBlock", { link = "TSVariable" })
-  hi(0, "Identifier", { link = "TSKeyword" })
+  hi(0, "Identifier", { link = "TSVariable" })
   -- Terminal colors
   local g = vim.g
 
